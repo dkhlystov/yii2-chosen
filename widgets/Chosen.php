@@ -7,7 +7,6 @@ use yii\helpers\Json;
 use yii\widgets\InputWidget;
 
 use dkhlystov\widgets\assets\BootstrapChosenAsset;
-use dkhlystov\widgets\assets\ChosenAsset;
 
 class Chosen extends InputWidget
 {
@@ -63,7 +62,6 @@ class Chosen extends InputWidget
 	{
 		$view = $this->getView();
 
-		ChosenAsset::register($view);
 		BootstrapChosenAsset::register($view);
 
 		$options = Json::htmlEncode($this->clientOptions);
