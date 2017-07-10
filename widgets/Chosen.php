@@ -37,6 +37,11 @@ class Chosen extends InputWidget
 	public $placeholder;
 
 	/**
+	 * @var string no result text for chosen
+	 */
+	public $noResultText;
+
+	/**
 	 * @inheritdoc
 	 */
 	public function init()
@@ -45,6 +50,9 @@ class Chosen extends InputWidget
 
 		if ($this->placeholder !== null)
 			$this->options['data-placeholder'] = $this->placeholder;
+
+		if ($this->noResultText !== null)
+			$this->clientOptions['no_results_text'] = $this->noResultText;
 
 		$this->registerScripts();
 	}
