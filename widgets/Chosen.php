@@ -11,8 +11,14 @@ use dkhlystov\widgets\assets\BootstrapChosenAsset;
 class Chosen extends InputWidget
 {
 
+	/**
+	 * @var boolean whether to render input as multiple select
+	 */
 	public $multiple = false;
 
+	/**
+	 * @var array items array to render select options
+	 */
 	public $items = [];
 
 	/**
