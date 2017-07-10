@@ -29,7 +29,7 @@ class Chosen extends InputWidget
 	/**
 	 * @var array additional options for jquery bootstrap chosen widget
 	 */
-	public $clientOptions = [];
+	public $clientOptions = ['width' => '100%'];
 
 	/**
 	 * @var string placeholder for chosen
