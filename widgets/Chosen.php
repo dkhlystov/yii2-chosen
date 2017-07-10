@@ -2,14 +2,27 @@
 
 namespace dkhlystov\widgets;
 
+use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\widgets\InputWidget;
+
+use dkhlystov\widgets\assets\BootstrapChosenAsset;
+use dkhlystov\widgets\assets\ChosenAsset;
 
 class Chosen extends InputWidget
 {
 
+	public $multiple = false;
+
+	public $items = [];
+
 	/**
-	 * @var array options for Chosen plugin
-	 * @see http://harvesthq.github.io/chosen/options.html
+	 * @inheritdoc
+	 */
+	public $options = ['class' => 'form-control'];
+
+	/**
+	 * @var array additional options for jquery bootstrap chosen widget
 	 */
 	public $clientOptions = [];
 
@@ -19,8 +32,27 @@ class Chosen extends InputWidget
 	public function init()
 	{
 		parent::init();
-
 		$this->registerScripts();
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function run()
+	{
+		if ($this->hasModel()) {
+			if ($this->multiple) {
+				echo Html::activeListBox($this->model, $this->attribute, $this->items, $this->options);
+			} else {
+				echo Html::activeDropDownList($this->model, $this->attribute, $this->items, $this->options);
+			}
+		} else {
+			if ($this->multiple) {
+				echo Html::listBox($this->name, $this->value, $this->items, $this->options);
+			} else {
+				echo Html::dropDownList($this->name, $this->value, $this->items, $this->options);
+			}
+		}
 	}
 
 	/**
@@ -29,11 +61,14 @@ class Chosen extends InputWidget
 	 */
 	private function registerScripts()
 	{
-		ChosenAsset::register($this->getView());
+		$view = $this->getView();
 
-		$clientOptions = Json::encode($this->clientOptions);
-		$id = $this->options['id'];
-		$this->getView()->registerJs("jQuery('#$id').chosen({$clientOptions});");
+		ChosenAsset::register($view);
+		BootstrapChosenAsset::register($view);
+
+		$options = Json::htmlEncode($this->clientOptions);
+
+		$view->registerJs("jQuery('#{$this->options['id']}').chosen($.extend({}, $options));");
 	}
 
 }
