@@ -10,11 +10,11 @@ class ChosenAsset extends AssetBundle
 	public $sourcePath = '@bower/chosen';
 
 	public $js = [
-		'chosen.jquery.min.js',
+		'chosen.jquery.js',
 	];
 
 	public $css = [
-		'chosen.min.css',
+		'chosen.css',
 	];
 
 	public $depends = [

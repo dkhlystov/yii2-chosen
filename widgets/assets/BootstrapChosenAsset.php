@@ -7,8 +7,6 @@ use yii\web\AssetBundle;
 class BootstrapChosenAsset extends AssetBundle
 {
 
-	public $sourcePath = '@bower/bootstrap-chosen';
-
 	public $css = [
 		'bootstrap-chosen.css',
 	];
@@ -17,5 +15,12 @@ class BootstrapChosenAsset extends AssetBundle
 		'yii\bootstrap\BootstrapAsset',
 		'dkhlystov\widgets\assets\ChosenAsset',
 	];
+
+	public function init()
+	{
+		$this->sourcePath = __DIR__ . '/bootstrap-chosen';
+
+		parent::init();
+	}
 
 }
