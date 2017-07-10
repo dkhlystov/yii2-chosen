@@ -32,11 +32,20 @@ class Chosen extends InputWidget
 	public $clientOptions = [];
 
 	/**
+	 * @var string placeholder for chosen
+	 */
+	public $placeholder;
+
+	/**
 	 * @inheritdoc
 	 */
 	public function init()
 	{
 		parent::init();
+
+		if ($this->placeholder !== null)
+			$this->options['data-placeholder'] = $this->placeholder;
+
 		$this->registerScripts();
 	}
 
