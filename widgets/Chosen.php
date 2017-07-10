@@ -48,6 +48,9 @@ class Chosen extends InputWidget
 	{
 		parent::init();
 
+		if ($this->multiple)
+			$this->options['multiple'] = true;
+
 		if ($this->placeholder !== null)
 			$this->options['data-placeholder'] = $this->placeholder;
 
